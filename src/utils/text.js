@@ -1,0 +1,1 @@
+export const toNumberOnly = (text) => text.replace(/^[0]*/g,"").replace(/[^0-9]/g, "");
