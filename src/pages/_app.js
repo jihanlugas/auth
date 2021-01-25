@@ -3,6 +3,76 @@ import { Provider as StoreProvider } from 'react-redux';
 import store from '../redux/store';
 import '../../styles/globals.scss'
 import Router from "next/router";
+import { library, config } from '@fortawesome/fontawesome-svg-core';
+import {
+    faArchive,
+    faArrowsAlt,
+    faBars,
+    faBoxes,
+    faBoxOpen,
+    faCaretRight,
+    faCashRegister,
+    faChartLine,
+    faCheckSquare,
+    faChevronDown,
+    faChevronRight,
+    faCogs,
+    faCookieBite,
+    faDollarSign,
+    faDrumstickBite,
+    faMinusSquare,
+    faPlus,
+    faPlusSquare,
+    faShoppingCart,
+    faSignInAlt,
+    faSort,
+    faSortDown,
+    faSortUp,
+    faSpinner,
+    faSquare,
+    faStoreAlt,
+    faTabletAlt,
+    faTachometerAlt,
+    faUsers,
+    faVoteYea,
+
+} from '@fortawesome/free-solid-svg-icons';
+import {
+    faFileAlt,
+} from '@fortawesome/free-regular-svg-icons';
+library.add(
+    faArchive,
+    faArrowsAlt,
+    faBars,
+    faBoxes,
+    faBoxOpen,
+    faCaretRight,
+    faCashRegister,
+    faChartLine,
+    faCheckSquare,
+    faChevronDown,
+    faChevronRight,
+    faCogs,
+    faCookieBite,
+    faDollarSign,
+    faDrumstickBite,
+    faFileAlt,
+    faMinusSquare,
+    faPlus,
+    faPlusSquare,
+    faShoppingCart,
+    faSignInAlt,
+    faSort,
+    faSortDown,
+    faSortUp,
+    faSpinner,
+    faSquare,
+    faStoreAlt,
+    faTabletAlt,
+    faTachometerAlt,
+    faUsers,
+    faVoteYea
+);
 
 function isBrowser() {
     return typeof window !== 'undefined';
@@ -17,30 +87,6 @@ function redirectUser(ctx, location) {
     }
 }
 
-// class MyApp extends App {
-//     static async getInitialProps({ Component, ctx }) {
-//         if (!isBrowser() && ctx.res) {
-//             if (ctx.req.headers.cookie) {
-
-//             } else {
-
-//             }
-//         }
-
-//         let pageProps = {};
-
-//         if (Component.getInitialProps) {
-//             pageProps = await Component.getInitialProps(ctx);
-//         }
-
-//         return (
-//             <StoreProvider store={store}>
-//                 <Component {...pageProps} />
-//             </StoreProvider>
-//         )
-//     }
-// }
-
 const MyAppp = ({ Component, pageProps }) => {
     return (
         <StoreProvider store={store}>
@@ -52,8 +98,6 @@ const MyAppp = ({ Component, pageProps }) => {
 MyAppp.getInitialProps = async (appContext) => {
     const { ctx } = appContext;
     const { pathname } = ctx;
-
-    console.log('pathname => ', pathname)
 
     if (!isBrowser() && ctx.res) {
         if (ctx.req.headers.cookie) {

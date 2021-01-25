@@ -154,7 +154,6 @@ const submitResultReducer = (state = Map(), action) => {
 
 export default function rootReducers(state = {}, action) {
     return {
-        test: { test: true },
         login: userReducers.login(state.login, action),
         isFetching: loadingReducer(state.isFetching, action),
         listError: listErrorReducer(state.listError, action),

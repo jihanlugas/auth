@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faChartBar } from '@fortawesome/free-solid-svg-icons'
 import { connect } from "react-redux";
 
 
@@ -30,7 +30,7 @@ const Sidebar = ({ children, onClickOverlay, show, authMenu }) => {
                                         <a>
                                             <div className="p-4 hover:bg-gray-200 w-full flex items-center">
                                                 <div className="flex justify-center items-center h-4 w-4 mr-2">
-                                                    <FontAwesomeIcon size="1x" icon={faBars} />
+                                                    <FontAwesomeIcon size="1x" icon={menu.get("icon").toJS()} />
                                                 </div>
                                                 <div>
                                                     <span>{menu.get("name")}</span>
