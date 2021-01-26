@@ -22,7 +22,6 @@ const mapStateToProps = (state) => {
 const UserLayout = ({ children, login, hasInit, dispatch }) => {
 
     useEffect(() => {
-        console.log('login => ', login)
         if (hasInit === false) {
             dispatch(getUserDataAuthorized());
         } else if (login.get("userId") === 0) {

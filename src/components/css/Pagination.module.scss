@@ -1,0 +1,44 @@
+$transitionTime: 200ms ease-out;
+
+.paginateContainer{
+  @apply flex-1 flex items-center justify-between px-2 py-1 border-b border-gray-300;
+  .pagingInfo{
+    @apply text-sm leading-5;
+  }
+  .goToPage{
+    @apply inline-flex rounded mx-2 text-sm leading-5 items-center mr-3;
+  }
+  .nav{
+    @apply inline-flex items-center px-1;
+  }
+  .navButton{
+    @apply relative inline-flex items-center p-1 text-sm font-medium  transition ease-in-out duration-200 rounded;
+    &:hover{
+      @apply bg-yellow-600;
+    }
+    &:focus{
+      @apply outline-none;
+    }
+    &:active{
+      @apply bg-red-400;
+    }
+    & > svg{
+      @apply h-6 w-6;
+    }
+    &.disabled {
+      @apply text-yellow-600;
+      &:hover{
+        @apply bg-red-500;
+      }
+    }
+  }
+  .navInputWrapper{
+    @apply inline-flex items-center p-2 bg-blue-200 text-sm font-medium;
+    .navInputGoToPage{
+      @apply text-center border rounded;
+      &:focus{
+        @apply outline-none;
+      }
+    }
+  }
+}

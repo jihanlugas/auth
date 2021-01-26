@@ -1,0 +1,27 @@
+table.table {
+  @apply border-collapse;
+  @apply table-auto;
+  @apply w-full;
+  @apply text-sm;
+  @apply text-left;
+
+  thead > tr {
+    @apply bg-green-300;
+  }
+
+  th {
+    @apply p-2;
+    @apply font-semibold;
+    @apply tracking-wider;
+    @apply uppercase;
+    @apply text-gray-800;
+  }
+
+  tbody > tr {
+    @apply border-b;
+    @apply border-gray-300;
+    td {
+      @apply p-2;
+    }
+  }
+}

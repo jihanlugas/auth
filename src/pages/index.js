@@ -9,7 +9,7 @@ export default function Home() {
             </Head>
             <div className={""}>
                 Create Next App
-      </div>
+            </div>
         </div>
     )
 }
