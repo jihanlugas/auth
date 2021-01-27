@@ -11,6 +11,9 @@ import Button from "../../components/widget/Button";
 import { pagingComposer } from "../../components/widget/table-pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import ModalCreateUser from '../../components/modal/ModalCreateUser';
+import { GENDER } from "../../utils/Constant"
+
 
 const loadingSelect = isFetchingSelector([pagingActions.USER_LIST.type]);
 
@@ -26,13 +29,17 @@ const mapStateToProps = (state) => {
 
 const Users = ({ dispatch, users, userUI, formikSearch, isFetching }) => {
 
+    const [isShowModal, setIsShowModal] = useState(false);
+    const [selectedId, setSelectedId] = useState(0);
+
+
     useEffect(() => {
         dispatch(pagingActions.request(pagingActions.USER_LIST, userUI.paging.get("page"), userUI.filter, userUI.sort));
     }, [])
 
     const toggleClickOverlay = (userId = 0, refresh) => {
-        // setSelectedId(userId)
-        // setIsShowModal(!isShowModal)
+        setSelectedId(userId)
+        setIsShowModal(!isShowModal)
         if (refresh) {
             dispatch(pagingActions.request(pagingActions.USER_LIST, userUI.paging.get("page"), userUI.filter, userUI.sort));
         }
@@ -73,8 +80,8 @@ const Users = ({ dispatch, users, userUI, formikSearch, isFetching }) => {
                                         field={"email"}>{"Email"}</FormPage.ThField>
                                     <FormPage.ThField
                                         field={"gender"}>{"Gender"}</FormPage.ThField>
-                                    <FormPage.ThField
-                                        field={"roleId"}>{"Role"}</FormPage.ThField>
+                                    {/* <FormPage.ThField
+                                        field={"roleId"}>{"Role"}</FormPage.ThField> */}
                                     <FormPage.Th width={"50px"}>{"Action"}</FormPage.Th>
                                 </tr>
                             </thead>
@@ -90,11 +97,11 @@ const Users = ({ dispatch, users, userUI, formikSearch, isFetching }) => {
                                                     <FormPage.LabelData>{rowData.get('email')}</FormPage.LabelData>
                                                 </td>
                                                 <td>
-                                                    <FormPage.LabelData>{rowData.get('gender')}</FormPage.LabelData>
+                                                    <FormPage.LabelData>{GENDER.get(rowData.get('gender')) && GENDER.get(rowData.get('gender')).get("name")}</FormPage.LabelData>
                                                 </td>
-                                                <td>
+                                                {/* <td>
                                                     <FormPage.LabelData>{rowData.get('roleId')}</FormPage.LabelData>
-                                                </td>
+                                                </td> */}
                                                 <td>
                                                     {
                                                         !isFetching && (
@@ -112,6 +119,13 @@ const Users = ({ dispatch, users, userUI, formikSearch, isFetching }) => {
                                 }
                             </tbody>
                         </FormPage.Table>
+                        <FormPage.Pagination />
+                        <ModalCreateUser
+                            show={isShowModal}
+                            onClickOverlay={toggleClickOverlay}
+                            selectedId={selectedId}
+                            onCloseModal={toggleClickOverlay}
+                        />
                     </div>
                 </div>
             </div>

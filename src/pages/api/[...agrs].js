@@ -1,17 +1,12 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
 
 export default createProxyMiddleware('/api', {
-    // target: "http://gds3.web:1323", //the data server
-    target: "http://localhost:8000", //the data server
-    // target: "https://office-dev.gdschannel.com", //the data serverz
+    target: "http://localhost:8000", // local
+    // target: "http://backend.se-kawan.com", // server
     changeOrigin: true,
-    // pathRewrite: {
-    //     '^/api':''
-    // }
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Tes": "Tes",
     }
 });
 

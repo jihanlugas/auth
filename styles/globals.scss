@@ -4,32 +4,42 @@
 
 html,
 body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.field{
-    @apply w-full;
-    @apply p-2;
-    @apply border-2;
-    @apply rounded-md;
+input,
+select {
+  @apply bg-gray-50;
 }
 
-.buttonsubmit{
-    @apply w-full;
-    @apply bg-green-400;
-    @apply h-10;
-    @apply rounded-md;
-    @apply text-gray-200;
-    @apply font-bold;
+button:focus,
+input:focus {
+  @apply outline-none;
+}
+
+.field {
+  @apply w-full;
+  @apply p-2;
+  @apply border-2;
+  @apply rounded-md;
+}
+
+.buttonsubmit {
+  @apply w-full;
+  @apply bg-green-400;
+  @apply h-10;
+  @apply rounded-md;
+  @apply text-gray-200;
+  @apply font-bold;
 }
