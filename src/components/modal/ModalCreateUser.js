@@ -5,10 +5,13 @@ import { connect } from "react-redux";
 import TextField from '../formik/TextField';
 import Dropdown from '../formik/Dropdown';
 import ButtonSubmit from '../formik/ButtonSubmit';
+import Button from '../widget/Button';
 import { Form, Formik, Field } from "formik";
 import LoadingOnFetch from "../LoadingOnFetch";
 import { isFetchingSelector } from "../../utils/Helper";
-import { ROLE, GENDER } from "../../utils/Constant"
+import { ROLE, GENDER } from "../../utils/Constant";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 const loadingSelect = isFetchingSelector([formActions.USER_DATA.type]);
@@ -29,6 +32,10 @@ const ModalCreateUser = ({ show, onClickOverlay, dispatch, selectedId, currData,
             // notif.success(t("common:Data Saved Successfully"));
         }
     }, [submitResult])
+
+    const handleDelete = (id) => {
+        dispatch(formActions.delete(formActions.USER_DATA, { id }));
+    }
 
     useEffect(() => {
         if (show) {
@@ -65,8 +72,15 @@ const ModalCreateUser = ({ show, onClickOverlay, dispatch, selectedId, currData,
                 >
                     {({ setFieldValue, values, errors, handleReset, handleSubmit }) => (
                         <Form className={"flex flex-col w-full"}>
-                            <div className={"flex mb-4 text-xl"}>
-                                Create User
+                            <div className={"flex justify-between items-center mb-4 text-xl h-12"}>
+                                <div>
+                                    {selectedId === 0 ? "Create User" : "Update User "}
+                                </div>
+                                {selectedId !== 0 && (
+                                    <div className="w-12 h-12 flex justify-center items-center bg-red-500 text-gray-50 rounded-lg" onClick={() => handleDelete(selectedId)}>
+                                        <FontAwesomeIcon icon={faTrashAlt} />
+                                    </div>
+                                )}
                             </div>
                             <div className={"w-full grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4"}>
                                 <div className={"flex w-full"}>
@@ -102,11 +116,9 @@ const ModalCreateUser = ({ show, onClickOverlay, dispatch, selectedId, currData,
                                     />
                                 </div> */}
                             </div>
-                            <div className={"flex justify-end"}>
+                            <div className={"flex"}>
                                 <ButtonSubmit label={"Save"} />
                             </div>
-                            <div>{JSON.stringify(currData, '', 4)}</div>
-                            <div>{JSON.stringify(values, '', 4)}</div>
                         </Form>
                     )}
                 </Formik>

@@ -2,7 +2,7 @@ import UserLayout from "../../components/UserLayout";
 import Head from "next/head";
 import { connect } from "react-redux";
 import { List, Map, Repeat } from "immutable";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { pagingState } from "../../redux/reducers/defaultState";
 import pagingActions from "../../redux/actions/pagingActions";
 import { handlePagingFilterUi, isFetchingSelector } from "../../utils/Helper";
@@ -10,9 +10,10 @@ import { pagingUiSelect } from '../../selector/uiSelector';
 import Button from "../../components/widget/Button";
 import { pagingComposer } from "../../components/widget/table-pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ModalCreateUser from '../../components/modal/ModalCreateUser';
-import { GENDER } from "../../utils/Constant"
+import { GENDER } from "../../utils/Constant";
+import formActions from "../../redux/actions/formActions";
 
 
 const loadingSelect = isFetchingSelector([pagingActions.USER_LIST.type]);
@@ -32,6 +33,7 @@ const Users = ({ dispatch, users, userUI, formikSearch, isFetching }) => {
     const [isShowModal, setIsShowModal] = useState(false);
     const [selectedId, setSelectedId] = useState(0);
 
+    console.log('isShowModal => ', isShowModal)
 
     useEffect(() => {
         dispatch(pagingActions.request(pagingActions.USER_LIST, userUI.paging.get("page"), userUI.filter, userUI.sort));
@@ -105,11 +107,14 @@ const Users = ({ dispatch, users, userUI, formikSearch, isFetching }) => {
                                                 <td>
                                                     {
                                                         !isFetching && (
-                                                            <a className={"cursor-pointer rounded shadow flex justify-center items-center h-8 w-8"}
-                                                                onClick={() => toggleClickOverlay(rowData.get('userId'))}
-                                                            >
-                                                                <FontAwesomeIcon icon={faPencilAlt} />
-                                                            </a>
+                                                            <div className="flex justify-center">
+                                                                <a className={"cursor-pointer rounded shadow flex justify-center items-center h-8 w-8 mx-1"}
+                                                                    onClick={() => toggleClickOverlay(rowData.get('userId'))}
+                                                                >
+                                                                    <FontAwesomeIcon icon={faPencilAlt} />
+                                                                </a>
+                                                            </div>
+
                                                         )
                                                     }
                                                 </td>
@@ -124,7 +129,6 @@ const Users = ({ dispatch, users, userUI, formikSearch, isFetching }) => {
                             show={isShowModal}
                             onClickOverlay={toggleClickOverlay}
                             selectedId={selectedId}
-                            onCloseModal={toggleClickOverlay}
                         />
                     </div>
                 </div>
