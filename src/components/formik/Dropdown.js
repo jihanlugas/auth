@@ -1,4 +1,4 @@
-import { FastField } from "formik";
+import { FastField, Field } from "formik";
 
 
 const Dropdown = ({ label, name, items, itemKey, itemLabel, prompt = "", ...props }) => {
@@ -9,7 +9,7 @@ const Dropdown = ({ label, name, items, itemKey, itemLabel, prompt = "", ...prop
                     { label}
                 </div>
             )}
-            <FastField
+            <Field
                 as={"select"}
                 className={"w-full border-2 rounded h-10 px-2"}
                 name={name}
@@ -19,9 +19,10 @@ const Dropdown = ({ label, name, items, itemKey, itemLabel, prompt = "", ...prop
                     <option value={""}>{prompt}</option>
                 )}
                 {items.valueSeq().map((item, key) => (
+
                     <option key={key} value={item.get(itemKey)}>{item.get(itemLabel)}</option>
                 ))}
-            </FastField>
+            </Field>
         </div>
     )
 }

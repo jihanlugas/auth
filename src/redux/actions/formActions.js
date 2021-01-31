@@ -1,7 +1,8 @@
 import { actionFormComposer } from "../../utils/Helper";
 
 export const types = {
-    USER_DATA: actionFormComposer('USER_DATA', '/user/form'),
+    MANDOR_DATA: actionFormComposer('MANDOR_DATA', '/mandor/form'),
+    ANGGOTA_DATA: actionFormComposer('ANGGOTA_DATA', '/anggota/form'),
 }
 
 function formReqComposer(initval) {

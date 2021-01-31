@@ -8,10 +8,28 @@ export const ROLE = fromJS({
         "key": 1,
         "name": "Admin",
     },
-    "STAFF": {
-        "id": "STAFF",
+    "MANDOR": {
+        "id": "MANDOR",
         "key": 2,
-        "name": "Staff",
+        "name": "Mandor",
+    },
+    "ANGGOTA": {
+        "id": "ANGGOTA",
+        "key": 3,
+        "name": "Anggota",
+    },
+});
+
+export const ROLE_WITHOUT_ADMIN = fromJS({
+    "MANDOR": {
+        "id": "MANDOR",
+        "key": 2,
+        "name": "Mandor",
+    },
+    "ANGGOTA": {
+        "id": "ANGGOTA",
+        "key": 3,
+        "name": "Anggota",
     },
 });
 

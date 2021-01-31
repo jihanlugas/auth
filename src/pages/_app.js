@@ -33,6 +33,7 @@ import {
     faStoreAlt,
     faTabletAlt,
     faTachometerAlt,
+    faUser,
     faUsers,
     faVoteYea,
 
@@ -70,6 +71,7 @@ library.add(
     faStoreAlt,
     faTabletAlt,
     faTachometerAlt,
+    faUser,
     faUsers,
     faVoteYea
 );

@@ -35,19 +35,17 @@ class Api {
             responseType: 'json',
             cancelToken: source.token
         }).then(res => res.data, error => {
-            if (error.response) {
-                console.log(error.response.data, "data");
-                console.log(error.response.status, "status");
-                console.log(error.response.headers, "headers");
-            }
-            if (error.request) {
-                console.log(error.request, "request");
-                console.log(error.request._response, "_response");
-            }
-            console.log('Error', error.message);
-            console.log(error.config);
-
-            console.log("errror api");
+            // if (error.response) {
+            //     console.log(error.response.data, "data");
+            //     console.log(error.response.status, "status");
+            //     console.log(error.response.headers, "headers");
+            // }
+            // if (error.request) {
+            //     console.log(error.request, "request");
+            //     console.log(error.request._response, "_response");
+            // }
+            // console.log('Error', error.message);
+            // console.log(error.config);
 
             if (error.response) {
                 if (error.response.data) {

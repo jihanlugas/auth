@@ -24,6 +24,7 @@ select {
 }
 
 button:focus,
+select:focus,
 input:focus {
   @apply outline-none;
 }

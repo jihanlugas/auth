@@ -8,11 +8,11 @@ function LoadingOnFetch({ isFetching, data, children }) {
 
     return (
         ((isFetching && isEmptyObject(data)) || (prevFetch === true && isFetching === true)) ? (
-            <div className={"flex justify-center items-center w-full h-full"}>
+            <div className={"flex justify-center items-center w-full h-40"}>
                 <FontAwesomeIcon spin={true} icon={['fas', 'spinner']} size={"2x"} />
             </div>
         ) : isEmptyObject(data) ? (
-            <div className={"flex-center"}>
+            <div className={"flex justify-center items-center"}>
                 <div>
                     {"No Data to Display"}
                 </div>

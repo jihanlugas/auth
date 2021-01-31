@@ -99,6 +99,18 @@ const formDataReducer = (state = Map(), action) => {
     }
 };
 
+const rawDataReducer = (state = Map(), action) => {
+    const { type, payload } = action;
+    const regX = new RegExp('(.*)_RAW_(REQUEST|SUCCESS|ERROR|CLEAR)');
+    const matches = regX.exec(type);
+
+    // not a *_REQUEST / *_FAILURE actions, so we ignore them
+    if (!matches) return state;
+
+    const [, requestName, requestState] = matches;
+    return state.set(requestName + "_RAW", ((requestState === 'SUCCESS') ? fromJS(normalizeDataArray(payload, "list", payload.idFieldName)) : Map()));
+};
+
 const submitResultReducer = (state = Map(), action) => {
     const { type, reqId, method, payload } = action;
     const regX = new RegExp('(.*)_FORM_(REQUEST|SUCCESS|ERROR|CLEAR|CLRSUBMIT)');
@@ -154,14 +166,15 @@ const submitResultReducer = (state = Map(), action) => {
 
 export default function rootReducers(state = {}, action) {
     return {
-        login: userReducers.login(state.login, action),
+        formikData: formDataReducer(state.formikData, action),
+        formikSearch: formSearchReducer(state.formikSearch, action),
         isFetching: loadingReducer(state.isFetching, action),
+        login: userReducers.login(state.login, action),
         listError: listErrorReducer(state.listError, action),
-        static: masterReducers.staticDataReducers(state.static, action),
         paging: pagingReducer(state.paging, action),
         pagingData: pagingDataReducer(state.pagingData, action),
-        formikSearch: formSearchReducer(state.formikSearch, action),
-        formikData: formDataReducer(state.formikData, action),
+        rawData: rawDataReducer(state.rawData, action),
+        static: masterReducers.staticDataReducers(state.static, action),
         submitResult: submitResultReducer(state.submitResult, action),
     }
 }

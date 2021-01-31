@@ -1,6 +1,6 @@
 import { isEmpty, isEmptyObject, typeCheck } from './Validate';
 import { createSelector } from 'reselect';
-
+import { normalize, schema } from 'normalizr';
 
 export const normalizeDataArray = (payload, entityName, idAttribute, fullReturn = false) => {
     const entitySchema = new schema.Entity(entityName, {}, { idAttribute: idAttribute });
@@ -26,6 +26,17 @@ export const actionPageComposer = (type, requestPath) => {
         error: type + "_PAGE_ERROR",
         clear: type + "_PAGE_CLEAR",
         type: type + "_PAGE",
+        requestPath
+    }
+}
+
+export const actionRawComposer = (type, requestPath) => {
+    return {
+        request: type + "_RAW_REQUEST",
+        success: type + "_RAW_SUCCESS",
+        error: type + "_RAW_ERROR",
+        clear: type + "_RAW_CLEAR",
+        type: type + "_RAW",
         requestPath
     }
 }
