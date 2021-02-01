@@ -3,6 +3,7 @@ import { actionFormComposer } from "../../utils/Helper";
 export const types = {
     MANDOR_DATA: actionFormComposer('MANDOR_DATA', '/mandor/form'),
     ANGGOTA_DATA: actionFormComposer('ANGGOTA_DATA', '/anggota/form'),
+    PROJECT_DATA: actionFormComposer('PROJECT_DATA', '/project/form'),
 }
 
 function formReqComposer(initval) {

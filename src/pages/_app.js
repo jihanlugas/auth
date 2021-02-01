@@ -23,6 +23,7 @@ import {
     faMinusSquare,
     faPlus,
     faPlusSquare,
+    faProjectDiagram,
     faShoppingCart,
     faSignInAlt,
     faSort,
@@ -36,7 +37,6 @@ import {
     faUser,
     faUsers,
     faVoteYea,
-
 } from '@fortawesome/free-solid-svg-icons';
 import {
     faFileAlt,
@@ -61,6 +61,7 @@ library.add(
     faMinusSquare,
     faPlus,
     faPlusSquare,
+    faProjectDiagram,
     faShoppingCart,
     faSignInAlt,
     faSort,
