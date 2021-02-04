@@ -110,16 +110,18 @@ const ModalCreateAnggota = ({ show, onClickOverlay, dispatch, selectedId, currDa
                                         prompt={"Select"}
                                     />
                                 </div>
-                                <div className={"flex w-full"}>
-                                    <Dropdown
-                                        label={"Mandor"}
-                                        name={"mandorId"}
-                                        items={rawMandor}
-                                        itemKey={"userId"}
-                                        itemLabel={"name"}
-                                        prompt={"Select"}
-                                    />
-                                </div>
+                                {login.get("roleId") == 1 && (
+                                    <div className={"flex w-full"}>
+                                        <Dropdown
+                                            label={"Mandor"}
+                                            name={"mandorId"}
+                                            items={rawMandor}
+                                            itemKey={"userId"}
+                                            itemLabel={"name"}
+                                            prompt={"Select"}
+                                        />
+                                    </div>
+                                )}
                             </div>
                             <div className={"flex"}>
                                 <ButtonSubmit label={"Save"} />

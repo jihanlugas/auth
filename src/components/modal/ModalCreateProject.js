@@ -79,7 +79,7 @@ const ModalCreateProject = ({ show, onClickOverlay, dispatch, selectedId, currDa
                         <Form className={"flex flex-col w-full"}>
                             <div className={"flex justify-between items-center mb-4 text-xl h-12"}>
                                 <div>
-                                    {selectedId === 0 ? "Create User" : "Update User "}
+                                    {selectedId === 0 ? "Create Project" : "Update Project "}
                                 </div>
                                 {selectedId !== 0 && (
                                     <div className="w-12 h-12 flex justify-center items-center bg-red-500 text-gray-50 rounded-lg" onClick={() => handleDelete(selectedId)}>
@@ -96,24 +96,14 @@ const ModalCreateProject = ({ show, onClickOverlay, dispatch, selectedId, currDa
                                 </div>
                                 <div className={"flex w-full"}>
                                     <TextField
-                                        label={"Email"}
-                                        name={"email"}
-                                    />
-                                </div>
-                                <div className={"flex w-full"}>
-                                    <Dropdown
-                                        label={"Gender"}
-                                        name={"gender"}
-                                        items={GENDER}
-                                        itemKey={"id"}
-                                        itemLabel={"name"}
-                                        prompt={"Select"}
+                                        label={"Address"}
+                                        name={"address"}
                                     />
                                 </div>
                                 <div className={"flex w-full"}>
                                     <Dropdown
                                         label={"Mandor"}
-                                        name={"mandorId"}
+                                        name={"userId"}
                                         items={rawMandor}
                                         itemKey={"userId"}
                                         itemLabel={"name"}

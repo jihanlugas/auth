@@ -82,6 +82,8 @@ const Anggota = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                                         field={"gender"}>{"Gender"}</FormPage.ThField>
                                     <FormPage.ThField
                                         field={"roleId"}>{"Role"}</FormPage.ThField>
+                                    <FormPage.ThField
+                                        field={"mandorId"}>{"Mandor"}</FormPage.ThField>
                                     <FormPage.Th width={"50px"}>{"Action"}</FormPage.Th>
                                 </tr>
                             </thead>
@@ -101,6 +103,9 @@ const Anggota = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                                                 </td>
                                                 <td>
                                                     <FormPage.LabelData>{ROLE.find(roleData => roleData.get("key") == rowData.get('roleId')) && ROLE.find(roleData => roleData.get("key") == rowData.get('roleId')).get("name")}</FormPage.LabelData>
+                                                </td>
+                                                <td>
+                                                    <FormPage.LabelData>{rowData.get('mandor')}</FormPage.LabelData>
                                                 </td>
                                                 <td>
                                                     {

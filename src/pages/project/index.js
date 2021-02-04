@@ -95,14 +95,14 @@ const Project = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                                                     <FormPage.LabelData>{rowData.get('address')}</FormPage.LabelData>
                                                 </td>
                                                 <td>
-                                                    <FormPage.LabelData>{rowData.get('address')}</FormPage.LabelData>
+                                                    <FormPage.LabelData>{rowData.get('mandor')}</FormPage.LabelData>
                                                 </td>
                                                 <td>
                                                     {
                                                         !isFetching && (
                                                             <div className="flex justify-center">
                                                                 <a className={"cursor-pointer rounded shadow flex justify-center items-center h-8 w-8 mx-1"}
-                                                                    onClick={() => toggleClickOverlay(rowData.get('userId'))}
+                                                                    onClick={() => toggleClickOverlay(rowData.get('projectId'))}
                                                                 >
                                                                     <FontAwesomeIcon icon={faPencilAlt} />
                                                                 </a>
