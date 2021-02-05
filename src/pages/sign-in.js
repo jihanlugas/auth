@@ -17,8 +17,8 @@ const mapStateToProps = (state) => {
 const SignIn = ({ dispatch, login }) => {
 
     const initFormikValue = {
-        email: '',
-        password: '',
+        email: 'jihanlugas2@gmail.com',
+        password: '123456',
     }
 
     const handleSubmit = (values, actions) => {
