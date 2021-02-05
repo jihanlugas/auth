@@ -1,8 +1,8 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
 
 export default createProxyMiddleware('/api', {
-    target: "http://localhost:8000", // local
-    // target: "http://rian.se-kawan.com", // server
+    // target: "http://localhost:8000", // local
+    target: "http://rian.se-kawan.com", // server
     changeOrigin: true,
     headers: {
         "Accept": "application/json",
