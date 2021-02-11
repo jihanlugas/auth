@@ -70,7 +70,7 @@ const Project = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                             <Button label="Create" onClick={() => toggleClickOverlay()} />
                         </div>
                     </div>
-                    <div>
+                    <div className="w-full overflow-x-scroll">
                         <FormPage.Table>
                             <thead>
                                 <tr>

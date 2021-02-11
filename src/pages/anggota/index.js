@@ -70,7 +70,7 @@ const Anggota = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                             <Button label="Create" onClick={() => toggleClickOverlay()} />
                         </div>
                     </div>
-                    <div className="overflow-x-scroll">
+                    <div className="w-full overflow-x-scroll">
                         <FormPage.Table>
                             <thead>
                                 <tr>
