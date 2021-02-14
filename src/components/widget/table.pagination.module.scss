@@ -22,6 +22,7 @@ table.table {
     @apply border-gray-300;
     td {
       @apply p-2;
+      @apply truncate;
     }
   }
 }

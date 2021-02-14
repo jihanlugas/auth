@@ -10,8 +10,9 @@ import { pagingUiSelect } from '../../selector/uiSelector';
 import Button from "../../components/widget/Button";
 import { pagingComposer } from "../../components/widget/table-pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPencilAlt, faChartLine } from '@fortawesome/free-solid-svg-icons'
 import ModalCreateProject from '../../components/modal/ModalCreateProject';
+import ModalProjectReport from '../../components/modal/ModalProjectReport';
 import { GENDER, ROLE } from "../../utils/Constant";
 import formActions from "../../redux/actions/formActions";
 
@@ -21,6 +22,7 @@ const loadingSelect = isFetchingSelector([pagingActions.PROJECT_LIST.type]);
 const mapStateToProps = (state) => {
     const formikSearch = state.formikSearch.get(pagingActions.PROJECT_LIST.type, {});
     return {
+        login: state.login,
         mandors: state.pagingData.get(pagingActions.PROJECT_LIST.type, List()),
         formikSearch,
         isFetching: loadingSelect(state.isFetching),
@@ -28,22 +30,31 @@ const mapStateToProps = (state) => {
     }
 }
 
-const Project = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => {
+const Project = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching, login }) => {
 
     const [isShowModal, setIsShowModal] = useState(false);
+    const [isShowModalReport, setIsShowModalReport] = useState(false);
     const [selectedId, setSelectedId] = useState(0);
+    const [selectedProjectId, setSelectedProjectId] = useState(0);
 
     useEffect(() => {
         dispatch(pagingActions.request(pagingActions.PROJECT_LIST, anggotaUI.paging.get("page"), anggotaUI.filter, anggotaUI.sort));
     }, [])
 
-    const toggleClickOverlay = (userId = 0, refresh) => {
-        setSelectedId(userId)
+    const toggleClickOverlay = (projectId = 0, refresh) => {
+        setSelectedId(projectId)
         setIsShowModal(!isShowModal)
         if (refresh) {
             dispatch(pagingActions.request(pagingActions.PROJECT_LIST, anggotaUI.paging.get("page"), anggotaUI.filter, anggotaUI.sort));
         }
     }
+
+    const toggleProjectReport = (projectId) => {
+        setIsShowModalReport(!isShowModalReport)
+        setSelectedProjectId(projectId)
+    }
+
+
 
     const handlePaginationFilter = handlePagingFilterUi(anggotaUI, (page, filter, sort) => {
         dispatch(pagingActions.request(pagingActions.PROJECT_LIST, page, filter, sort));
@@ -65,11 +76,13 @@ const Project = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                     <span className="text-xl py-2">Project</span>
                 </div>
                 <div className={"flex flex-col w-full"}>
-                    <div className="flex justify-end">
-                        <div className="w-32 mb-4">
-                            <Button label="Create" onClick={() => toggleClickOverlay()} />
+                    {login.get("roleId") === ROLE.get("ADMIN").get("key") && (
+                        <div className="flex justify-end">
+                            <div className="w-32 mb-4">
+                                <Button label="Create" onClick={() => toggleClickOverlay()} />
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <div className="w-full overflow-x-scroll">
                         <FormPage.Table>
                             <thead>
@@ -79,7 +92,7 @@ const Project = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                                     <FormPage.ThField
                                         field={"address"}>{"Address"}</FormPage.ThField>
                                     <FormPage.ThField
-                                        field={"userId"}>{"Mandor"}</FormPage.ThField>
+                                        field={"projectId"}>{"Mandor"}</FormPage.ThField>
                                     <FormPage.Th width={"50px"}>{"Action"}</FormPage.Th>
                                 </tr>
                             </thead>
@@ -101,10 +114,17 @@ const Project = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                                                     {
                                                         !isFetching && (
                                                             <div className="flex justify-center">
+                                                                {login.get("roleId") === ROLE.get("ADMIN").get("key") && (
+                                                                    <a className={"cursor-pointer rounded shadow flex justify-center items-center h-8 w-8 mx-1"}
+                                                                        onClick={() => toggleClickOverlay(rowData.get('projectId'))}
+                                                                    >
+                                                                        <FontAwesomeIcon icon={faPencilAlt} />
+                                                                    </a>
+                                                                )}
                                                                 <a className={"cursor-pointer rounded shadow flex justify-center items-center h-8 w-8 mx-1"}
-                                                                    onClick={() => toggleClickOverlay(rowData.get('projectId'))}
+                                                                    onClick={() => toggleProjectReport(rowData.get('projectId'))}
                                                                 >
-                                                                    <FontAwesomeIcon icon={faPencilAlt} />
+                                                                    <FontAwesomeIcon icon={faChartLine} />
                                                                 </a>
                                                             </div>
 
@@ -122,6 +142,11 @@ const Project = ({ dispatch, mandors, anggotaUI, formikSearch, isFetching }) => 
                             show={isShowModal}
                             onClickOverlay={toggleClickOverlay}
                             selectedId={selectedId}
+                        />
+                        <ModalProjectReport
+                            show={isShowModalReport}
+                            onClickOverlay={toggleProjectReport}
+                            selectedProjectId={selectedProjectId}
                         />
                     </div>
                 </div>
